@@ -9,3 +9,15 @@ B:\OtherProjects\Novel\Editor\NovelFormsLibrary\NovelFormLibrary\obj\Debug\Novel
 B:\OtherProjects\Novel\Editor\NovelFormsLibrary\NovelFormLibrary\obj\Debug\NovelFormLibrary.dll
 B:\OtherProjects\Novel\Editor\NovelFormsLibrary\NovelFormLibrary\obj\Debug\NovelFormLibrary.pdb
 B:\OtherProjects\Novel\Editor\NovelFormsLibrary\NovelFormLibrary\obj\Debug\NovelFormLibrary.Map.resources
+C:\Users\User\Documents\GitHub\Novel\Editor\NovelFormsLibrary\NovelFormLibrary\bin\Debug\NovelFormLibrary.dll
+C:\Users\User\Documents\GitHub\Novel\Editor\NovelFormsLibrary\NovelFormLibrary\bin\Debug\NovelFormLibrary.pdb
+C:\Users\User\Documents\GitHub\Novel\Editor\NovelFormsLibrary\NovelFormLibrary\obj\Debug\NovelFormLibrary.csprojAssemblyReference.cache
+C:\Users\User\Documents\GitHub\Novel\Editor\NovelFormsLibrary\NovelFormLibrary\obj\Debug\NovelFormLibrary.Node.resources
+C:\Users\User\Documents\GitHub\Novel\Editor\NovelFormsLibrary\NovelFormLibrary\obj\Debug\NovelFormLibrary.Properties.Resources.resources
+C:\Users\User\Documents\GitHub\Novel\Editor\NovelFormsLibrary\NovelFormLibrary\obj\Debug\NovelFormLibrary.AddTieBox.resources
+C:\Users\User\Documents\GitHub\Novel\Editor\NovelFormsLibrary\NovelFormLibrary\obj\Debug\NovelFormLibrary.Map.resources
+C:\Users\User\Documents\GitHub\Novel\Editor\NovelFormsLibrary\NovelFormLibrary\obj\Debug\NovelFormLibrary.TieEditorBox.resources
+C:\Users\User\Documents\GitHub\Novel\Editor\NovelFormsLibrary\NovelFormLibrary\obj\Debug\NovelFormLibrary.csproj.GenerateResource.cache
+C:\Users\User\Documents\GitHub\Novel\Editor\NovelFormsLibrary\NovelFormLibrary\obj\Debug\NovelFormLibrary.csproj.CoreCompileInputs.cache
+C:\Users\User\Documents\GitHub\Novel\Editor\NovelFormsLibrary\NovelFormLibrary\obj\Debug\NovelFormLibrary.dll
+C:\Users\User\Documents\GitHub\Novel\Editor\NovelFormsLibrary\NovelFormLibrary\obj\Debug\NovelFormLibrary.pdb
