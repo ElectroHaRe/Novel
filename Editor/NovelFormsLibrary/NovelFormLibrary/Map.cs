@@ -7,11 +7,11 @@ namespace NovelFormLibrary
 {
     public partial class Map : UserControl
     {
-        public int CircleRadius = 4;
+        public int CircleRadius = 2;
         public Color CircleDefaultColor = Color.Red;
         public Color CircleHighlightColor = Color.Green;
 
-        public int LineWidth = 2;
+        public int LineWidth = 1;
         public Color LineDefaultColor = Color.Black;
         public Color LineHighlightColor = Color.Green;
 
@@ -53,7 +53,7 @@ namespace NovelFormLibrary
             {
                 Size tempWindowSize = subWindowSize;
                 Point tempWindowPosition = subWindowPosition;
-                worldSize = WorldSize;
+                worldSize = value;
                 subWindowPosition = tempWindowPosition;
                 subWindowSize = tempWindowSize;
             }
@@ -88,7 +88,11 @@ namespace NovelFormLibrary
         {
             if (length == count)
                 Array.Resize(ref CirclesAndLinesCoords, length * 2);
-            CirclesAndLinesCoords[count] = new KeyValuePair<Point, Point[]>(circleCoords, lineDistinationsCoords);
+            for (int i = 0; i < lineDistinationsCoords.Length; i++)
+            {
+                lineDistinationsCoords[i] = TransformWorldToLocalSpaceCoords(WorldSize, lineDistinationsCoords[i]);
+            }
+            CirclesAndLinesCoords[count] = new KeyValuePair<Point, Point[]>(TransformWorldToLocalSpaceCoords(WorldSize, circleCoords), lineDistinationsCoords);
             count++;
         }
 
@@ -143,8 +147,8 @@ namespace NovelFormLibrary
 
         public Point TransformWorldToLocalSpaceCoords(Size worldSize, Point coords)
         {
-            float x_coeff = validSize.Width / worldSize.Width;
-            float y_coeff = validSize.Height / worldSize.Height;
+            float x_coeff = (float)validSize.Width / worldSize.Width;
+            float y_coeff = (float)validSize.Height / worldSize.Height;
 
             return new Point((int)(coords.X * x_coeff), (int)(coords.Y * y_coeff));
         }
@@ -209,14 +213,13 @@ namespace NovelFormLibrary
         {
             for (int i = 0; i < count; i++)
             {
-
-                DrawCircle(CirclesAndLinesCoords[i].Key, Indent, e);
                 for (int j = 0; j < CirclesAndLinesCoords[i].Value.Length; j++)
                 {
                     DrawLine(CirclesAndLinesCoords[i].Key, CirclesAndLinesCoords[i].Value[j], Indent, e);
                 }
+                DrawCircle(CirclesAndLinesCoords[i].Key, Indent, e);
             }
-            DrawSubWindow(subWindowSize, subWindowPosition, Indent, e);
+            DrawSubWindow(subWindowSize, subWindowPosition, Indent/2, e);
         }
     }
 }
