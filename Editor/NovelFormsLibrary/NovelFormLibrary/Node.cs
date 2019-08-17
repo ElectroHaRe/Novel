@@ -6,6 +6,7 @@ namespace NovelFormLibrary
 {
     public partial class Node : UserControl
     {
+        public int index { get; set; }
         public event EventHandler OnPictureBoxClick;
         public Image Image
         {
