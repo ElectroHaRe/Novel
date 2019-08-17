@@ -66,12 +66,6 @@
     <Compile Include="Map.Designer.cs">
       <DependentUpon>Map.cs</DependentUpon>
     </Compile>
-    <Compile Include="SearchBox.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="SearchBox.Designer.cs">
-      <DependentUpon>SearchBox.cs</DependentUpon>
-    </Compile>
     <Service Include="{94E38DFF-614B-4cbd-B67C-F211BB35CE8B}" />
   </ItemGroup>
   <ItemGroup>
@@ -87,9 +81,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Map.resx">
       <DependentUpon>Map.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="SearchBox.resx">
-      <DependentUpon>SearchBox.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
