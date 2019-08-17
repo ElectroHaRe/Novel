@@ -9,3 +9,4 @@ B:\OtherProjects\Novel\Editor\NovelFormsLibrary\NovelFormLibrary\obj\Debug\Novel
 B:\OtherProjects\Novel\Editor\NovelFormsLibrary\NovelFormLibrary\obj\Debug\NovelFormLibrary.dll
 B:\OtherProjects\Novel\Editor\NovelFormsLibrary\NovelFormLibrary\obj\Debug\NovelFormLibrary.pdb
 B:\OtherProjects\Novel\Editor\NovelFormsLibrary\NovelFormLibrary\obj\Debug\NovelFormLibrary.Map.resources
+B:\OtherProjects\Novel\Editor\NovelFormsLibrary\NovelFormLibrary\obj\Debug\NovelFormLibrary.SearchBox.resources
