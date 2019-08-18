@@ -67,19 +67,19 @@ namespace NovelFormLibrary
         private int count = 0;
         private KeyValuePair<Point, Point[]>[] CirclesAndLinesCoords = new KeyValuePair<Point, Point[]>[4];
 
-        private Map()
+        public Map():this(new Size(1,1),new Size(1,1))
         {
             InitializeComponent();
         }
 
-        public Map(Form mainWindow, Size worldSize) : this()
+        public Map(Size windowSize, Size worldSize)
         {
-            WindowSize = mainWindow.Size;
+            WindowSize = windowSize;
             WorldSize = worldSize;
             WindowPosition = new Point(0, 0);
         }
 
-        public Map(Form mainWindow, Size worldSize, Point windowPosition) : this(mainWindow, worldSize)
+        public Map(Size windowSize, Size worldSize, Point windowPosition) : this(windowSize, worldSize)
         {
             WindowPosition = windowPosition;
         }
