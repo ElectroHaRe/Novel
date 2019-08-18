@@ -38,7 +38,7 @@
             // 
             // TieTextBox
             // 
-            this.TieTextBox.Location = new System.Drawing.Point(38, 2);
+            this.TieTextBox.Location = new System.Drawing.Point(38, 0);
             this.TieTextBox.Multiline = true;
             this.TieTextBox.Name = "TieTextBox";
             this.TieTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
@@ -50,7 +50,7 @@
             // 
             this.RemoveButton.AutoSize = true;
             this.RemoveButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.RemoveButton.Location = new System.Drawing.Point(4, 0);
+            this.RemoveButton.Location = new System.Drawing.Point(4, -2);
             this.RemoveButton.Name = "RemoveButton";
             this.RemoveButton.Size = new System.Drawing.Size(28, 39);
             this.RemoveButton.TabIndex = 2;
@@ -61,7 +61,7 @@
             // 
             this.ArrowButton.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("ArrowButton.BackgroundImage")));
             this.ArrowButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.ArrowButton.Location = new System.Drawing.Point(221, 11);
+            this.ArrowButton.Location = new System.Drawing.Point(221, 8);
             this.ArrowButton.Name = "ArrowButton";
             this.ArrowButton.Size = new System.Drawing.Size(25, 23);
             this.ArrowButton.TabIndex = 3;
@@ -87,7 +87,8 @@
             this.Controls.Add(this.RemoveButton);
             this.Controls.Add(this.TieTextBox);
             this.Name = "TieEditorBox";
-            this.Size = new System.Drawing.Size(250, 45);
+            this.Size = new System.Drawing.Size(250, 40);
+            this.SizeChanged += new System.EventHandler(this.TieEditorBox_SizeChanged);
             ((System.ComponentModel.ISupportInitialize)(this.ArrowButton)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

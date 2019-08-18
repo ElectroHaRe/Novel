@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Drawing;
 using System.Windows.Forms;
 
 namespace NovelFormLibrary
@@ -27,6 +28,14 @@ namespace NovelFormLibrary
         private void ArrowButton_Click(object sender, EventArgs e)
         {
             ArrowButtonClick?.Invoke(sender, e);
+        }
+
+        private void TieEditorBox_SizeChanged(object sender, EventArgs e)
+        {
+            RemoveButton.Location = new Point(4, this.Size.Height / 2 - RemoveButton.Height / 2 - 3);
+            TieTextBox.Location = new Point(RemoveButton.Width + 10, 0);
+            TieTextBox.Size = new Size(this.Size.Width - ArrowButton.Width - 2 - TieTextBox.Location.X, this.Size.Height);
+            ArrowButton.Location = new Point(this.Size.Width - ArrowButton.Width, this.Size.Height / 2 - ArrowButton.Height / 2);
         }
     }
 }

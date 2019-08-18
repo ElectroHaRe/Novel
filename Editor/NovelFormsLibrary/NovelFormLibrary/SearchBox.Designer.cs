@@ -64,6 +64,7 @@
             this.Controls.Add(this.requestBox);
             this.Name = "SearchBox";
             this.Size = new System.Drawing.Size(250, 20);
+            this.SizeChanged += new System.EventHandler(this.SearchBox_SizeChanged);
             ((System.ComponentModel.ISupportInitialize)(this.searchButton)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

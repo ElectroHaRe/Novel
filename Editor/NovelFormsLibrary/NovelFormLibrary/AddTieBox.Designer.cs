@@ -61,6 +61,7 @@
             this.Controls.Add(this.textBox);
             this.Name = "AddTieBox";
             this.Size = new System.Drawing.Size(250, 80);
+            this.SizeChanged += new System.EventHandler(this.AddTieBox_SizeChanged);
             this.ResumeLayout(false);
             this.PerformLayout();
 

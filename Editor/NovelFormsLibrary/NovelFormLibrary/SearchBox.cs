@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Drawing;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
@@ -31,6 +32,13 @@ namespace NovelFormLibrary
         private void searchButton_Click(object sender, EventArgs e)
         {
             OnSearchButtonClick?.Invoke(sender, e);
+        }
+
+        private void SearchBox_SizeChanged(object sender, EventArgs e)
+        {
+            this.Height = 20;
+            searchButton.Location = new Point(this.Size.Width - 21, 1);
+            requestBox.Width = searchButton.Location.X;
         }
     }
 }

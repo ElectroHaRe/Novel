@@ -44,5 +44,14 @@ namespace NovelFormLibrary
         {
             OnPictureBoxClick?.Invoke(sender,e);
         }
+
+        private void Node_SizeChanged(object sender, EventArgs e)
+        {
+            pictureBox.Location = new Point(0, 0);
+            pictureBox.Size = new Size(this.Size.Width, this.Height / 2);
+            textBox.Location = new Point(-1, pictureBox.Height);
+            textBox.Size = new Size(this.Size.Width + 1, this.Size.Height - pictureBox.Height);
+            NullImageLabel.Location = new Point(this.Size.Width / 2 - NullImageLabel.Width / 2, this.Size.Height / 4 - NullImageLabel.Height / 2);
+        }
     }
 }

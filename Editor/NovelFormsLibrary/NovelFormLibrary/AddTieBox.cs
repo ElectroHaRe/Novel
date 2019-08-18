@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
+using System.Drawing;
 
 namespace NovelFormLibrary
 {
@@ -20,6 +21,13 @@ namespace NovelFormLibrary
         private void plusButton_Click(object sender, EventArgs e)
         {
             OnButtonClick?.Invoke(sender,e);
+        }
+
+        private void AddTieBox_SizeChanged(object sender, EventArgs e)
+        {
+            plusButton.Location = new Point(this.Size.Width - plusButton.Width, this.Size.Height / 2 - plusButton.Height / 2);
+            textBox.Location = new Point(0, 0);
+            textBox.Size = new Size(this.Size.Width - plusButton.Width - 1, this.Size.Height);
         }
     }
 }

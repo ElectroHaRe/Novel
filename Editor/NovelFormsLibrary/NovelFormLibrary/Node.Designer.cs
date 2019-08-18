@@ -73,6 +73,7 @@
             this.Controls.Add(this.textBox);
             this.Name = "Node";
             this.Size = new System.Drawing.Size(248, 159);
+            this.SizeChanged += new System.EventHandler(this.Node_SizeChanged);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
