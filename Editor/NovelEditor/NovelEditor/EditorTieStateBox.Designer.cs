@@ -1,6 +1,6 @@
-﻿namespace NovelFormLibrary
+﻿namespace NovelEditor
 {
-    partial class Map
+    partial class EditorTieStateBox
     {
         /// <summary> 
         /// Обязательная переменная конструктора.
@@ -28,21 +28,32 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.addTieBox = new NovelFormLibrary.AddTieBox();
             this.SuspendLayout();
             // 
-            // Map
+            // addTieBox
+            // 
+            this.addTieBox.BackColor = System.Drawing.Color.Transparent;
+            this.addTieBox.Location = new System.Drawing.Point(0, 0);
+            this.addTieBox.Name = "addTieBox";
+            this.addTieBox.Size = new System.Drawing.Size(150, 80);
+            this.addTieBox.TabIndex = 1;
+            // 
+            // EditorTieStateBox
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.White;
-            this.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.Name = "Map";
-            this.Size = new System.Drawing.Size(250, 250);
-            this.Paint += new System.Windows.Forms.PaintEventHandler(this.Map_Paint);
+            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.Controls.Add(this.addTieBox);
+            this.Name = "EditorTieStateBox";
+            this.Size = new System.Drawing.Size(150, 80);
+            this.SizeChanged += new System.EventHandler(this.EditorTieFuncStateBox_SizeChanged);
             this.ResumeLayout(false);
 
         }
 
         #endregion
+
+        private NovelFormLibrary.AddTieBox addTieBox;
     }
 }

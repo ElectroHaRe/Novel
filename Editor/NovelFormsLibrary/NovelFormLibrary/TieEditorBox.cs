@@ -15,7 +15,11 @@ namespace NovelFormLibrary
         public event EventHandler RemoveButtonClick;
         public event EventHandler ArrowButtonClick;
 
-        public new string Text => TieTextBox.Text;
+        public new string Text
+        {
+            get => TieTextBox.Text;
+            set => TieTextBox.Text = value;
+        }
 
         private void RemoveButton_Click(object sender, EventArgs e)
         {

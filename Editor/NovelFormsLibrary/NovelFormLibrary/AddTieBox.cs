@@ -7,6 +7,12 @@ namespace NovelFormLibrary
     public partial class AddTieBox: UserControl
     {
         public event EventHandler OnButtonClick;
+        public new event EventHandler TextChanged
+        {
+            add { textBox.TextChanged += value; }
+            remove { textBox.TextChanged -= value; }
+        }
+
         public new string Text
         {
             get => textBox.Text;
