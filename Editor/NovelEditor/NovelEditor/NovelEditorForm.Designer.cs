@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.funcSpaceBox = new NovelEditor.FuncSpaceBox();
+            this.mainSpaceBox = new NovelEditor.MainSpace.MainSpaceBox();
             this.SuspendLayout();
             // 
             // funcSpaceBox
@@ -39,11 +40,20 @@
             this.funcSpaceBox.Size = new System.Drawing.Size(190, 451);
             this.funcSpaceBox.TabIndex = 0;
             // 
+            // mainSpaceBox
+            // 
+            this.mainSpaceBox.BackColor = System.Drawing.Color.White;
+            this.mainSpaceBox.Location = new System.Drawing.Point(0, 0);
+            this.mainSpaceBox.Name = "mainSpaceBox";
+            this.mainSpaceBox.Size = new System.Drawing.Size(610, 451);
+            this.mainSpaceBox.TabIndex = 1;
+            // 
             // NovelEditorForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.mainSpaceBox);
             this.Controls.Add(this.funcSpaceBox);
             this.Name = "NovelEditorForm";
             this.Text = "Novel Editor";
@@ -55,6 +65,7 @@
         #endregion
 
         private FuncSpaceBox funcSpaceBox;
+        private MainSpace.MainSpaceBox mainSpaceBox;
     }
 }
 

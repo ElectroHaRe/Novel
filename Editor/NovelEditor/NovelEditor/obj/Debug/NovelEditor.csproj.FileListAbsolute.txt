@@ -15,3 +15,4 @@ B:\OtherProjects\Novel\Editor\NovelEditor\NovelEditor\obj\Debug\NovelEditor.Nove
 B:\OtherProjects\Novel\Editor\NovelEditor\NovelEditor\obj\Debug\NovelEditor.DefaultStateBox.resources
 B:\OtherProjects\Novel\Editor\NovelEditor\NovelEditor\obj\Debug\NovelEditor.EditorTieStateBox.resources
 B:\OtherProjects\Novel\Editor\NovelEditor\NovelEditor\obj\Debug\NovelEditor.TieNodesState.resources
+B:\OtherProjects\Novel\Editor\NovelEditor\NovelEditor\obj\Debug\NovelEditor.MainSpace.MainSpaceBox.resources

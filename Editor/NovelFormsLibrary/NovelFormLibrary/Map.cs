@@ -9,7 +9,11 @@ namespace NovelFormLibrary
     {
         public int CircleRadius = 2;
         public Color CircleDefaultColor = Color.Red;
+
+
+        public int HighlightCircleRadius = 3;
         public Color CircleHighlightColor = Color.Green;
+        private int[] HighlightPointIndex = new int[0];
 
         public int LineWidth = 1;
         public Color LineDefaultColor = Color.Black;
@@ -54,20 +58,31 @@ namespace NovelFormLibrary
                 Size tempWindowSize = subWindowSize;
                 Point tempWindowPosition = subWindowPosition;
                 worldSize = value;
+                float factor = (float)Width/Height;
+                if (((float)value.Width / value.Height) > factor)
+                {
+                    worldSize.Height = (int)(value.Width / factor);
+                }
+                else
+                {
+                    worldSize.Width = (int)(value.Height * factor);
+                }
                 subWindowPosition = tempWindowPosition;
                 subWindowSize = tempWindowSize;
             }
         }
 
+        public Point WorldCenter = new Point(0, 0);
+
         public int Indent = 5;
-        private Size validSize => new Size(Size.Width - Indent * 2, Size.Width - Indent * 2);
+        private Size validSize => new Size(Size.Width - Indent * 2, Size.Height - Indent * 2);
         private Point validPosition => new Point(Indent, Indent);
 
         private int length => CirclesAndLinesCoords.Length;
         private int count = 0;
         private KeyValuePair<Point, Point[]>[] CirclesAndLinesCoords = new KeyValuePair<Point, Point[]>[4];
 
-        public Map():this(new Size(1,1),new Size(1,1))
+        public Map() : this(new Size(1, 1), new Size(1, 1))
         {
             InitializeComponent();
         }
@@ -84,10 +99,19 @@ namespace NovelFormLibrary
             WindowPosition = windowPosition;
         }
 
-        public void AddCircleAndLinesCoords(Point circleCoords, params Point[] lineDistinationsCoords)
+        public void MarkPointAsHighlight(int index)
+        {
+            Array.Resize(ref HighlightPointIndex, HighlightPointIndex.Length);
+            HighlightPointIndex[HighlightPointIndex.Length - 1] = index;
+        }
+
+        public void AddCircleAndLinesCoords(Size windowSize, Size worldSize, Point worldCenter, Point circleCoords, params Point[] lineDistinationsCoords)
         {
             if (length == count)
                 Array.Resize(ref CirclesAndLinesCoords, length * 2);
+            WindowSize = windowSize;
+            WorldSize = worldSize;
+            this.WorldCenter = worldCenter;
             for (int i = 0; i < lineDistinationsCoords.Length; i++)
             {
                 lineDistinationsCoords[i] = TransformWorldToLocalSpaceCoords(WorldSize, lineDistinationsCoords[i]);
@@ -98,10 +122,12 @@ namespace NovelFormLibrary
 
         public void UpdateCoords(int element, Point newCoords)
         {
+            newCoords = TransformWorldToLocalSpaceCoords(worldSize, newCoords);
+
             if (element >= 0 || element < count)
             {
                 CirclesAndLinesCoords[element] = new KeyValuePair<Point, Point[]>(newCoords, CirclesAndLinesCoords[element].Value);
-                Update();
+                Invalidate();
             }
         }
 
@@ -118,7 +144,7 @@ namespace NovelFormLibrary
             }
             Array.Resize(ref temp, temp.Length - 1);
             CirclesAndLinesCoords[element] = new KeyValuePair<Point, Point[]>(CirclesAndLinesCoords[element].Key, temp);
-            Update();
+            Invalidate();
         }
 
         public void RemoveCircle(int element)
@@ -130,19 +156,35 @@ namespace NovelFormLibrary
                 CirclesAndLinesCoords[i] = CirclesAndLinesCoords[i + 1];
             }
             count--;
-            Update();
+            Invalidate();
         }
 
         public void UpdateWindowPosition(Point newPosition)
         {
             WindowPosition = newPosition;
-            Update();
+            Invalidate();
         }
 
         public void UpdateWindowSize(Size newSize)
         {
             WindowSize = newSize;
-            Update();
+            Invalidate();
+        }
+
+        public Point TransformWorldToLocalSpaceCoords(Point coords)
+        {
+            float x_coeff = (float)validSize.Width / worldSize.Width;
+            float y_coeff = (float)validSize.Height / worldSize.Height;
+
+            return new Point((int)(coords.X * x_coeff), (int)(coords.Y * y_coeff));
+        }
+
+        public Point TransformLocalToWorldSpaceCoords(Point coords)
+        {
+            float x_coeff = (float)worldSize.Width / validSize.Width;
+            float y_coeff = (float)worldSize.Height / validSize.Height;
+
+            return new Point((int)(coords.X * x_coeff), (int)(coords.Y * y_coeff));
         }
 
         public Point TransformWorldToLocalSpaceCoords(Size worldSize, Point coords)
@@ -211,15 +253,22 @@ namespace NovelFormLibrary
 
         private void Map_Paint(object sender, PaintEventArgs e)
         {
+            Point CenterOffset = new Point(WorldCenter.X - WorldSize.Width / 2, WorldCenter.Y - WorldSize.Height / 2);
+            Point localOffset = TransformWorldToLocalSpaceCoords(CenterOffset);
             for (int i = 0; i < count; i++)
             {
                 for (int j = 0; j < CirclesAndLinesCoords[i].Value.Length; j++)
                 {
-                    DrawLine(CirclesAndLinesCoords[i].Key, CirclesAndLinesCoords[i].Value[j], Indent, e);
+                    DrawLine(new Point(CirclesAndLinesCoords[i].Key.X - localOffset.X, CirclesAndLinesCoords[i].Key.Y - localOffset.Y), 
+                        new Point(CirclesAndLinesCoords[i].Value[j].X - localOffset.X, CirclesAndLinesCoords[i].Value[j].Y - localOffset.Y), 
+                        Indent, e);
                 }
-                DrawCircle(CirclesAndLinesCoords[i].Key, Indent, e);
+                DrawCircle(new Point(CirclesAndLinesCoords[i].Key.X - localOffset.X, CirclesAndLinesCoords[i].Key.Y - localOffset.Y),
+                    Indent, e);
             }
-            DrawSubWindow(subWindowSize, subWindowPosition, Indent/2, e);
+            DrawSubWindow(subWindowSize, 
+                new Point(subWindowPosition.X - localOffset.X, subWindowPosition.Y - localOffset.Y),
+                Indent / 2, e);
         }
     }
 }

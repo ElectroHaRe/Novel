@@ -20,6 +20,8 @@ namespace NovelEditor
         private const int HIndent = 17;
         private const int VIndent = 5;
 
+        public int NodeIndex = 0;
+
         public event EventHandler OnSaveButtonClick
         {
             add { defaultTieStateBox.OnSaveButtonClick += value; }
@@ -71,11 +73,12 @@ namespace NovelEditor
             defaultTieStateBox.Active = true;
         }
 
-        public void SwithToTieEditorState()
+        public void SwithToTieEditorState(int index)
         {
             defaultTieStateBox.Active = false;
             tieNodesState.Active = false;
             tieNodesState.RemoveAll();
+            NodeIndex = index;
             editorTieStateBox.Active = true;
         }
 

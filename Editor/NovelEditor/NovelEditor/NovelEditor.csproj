@@ -49,23 +49,29 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DefaultStateBox.cs">
+    <Compile Include="FuncSpace\Components\DefaultStateBox.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="DefaultStateBox.Designer.cs">
+    <Compile Include="FuncSpace\Components\DefaultStateBox.Designer.cs">
       <DependentUpon>DefaultStateBox.cs</DependentUpon>
     </Compile>
-    <Compile Include="EditorTieStateBox.cs">
+    <Compile Include="FuncSpace\Components\EditorTieStateBox.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="EditorTieStateBox.Designer.cs">
+    <Compile Include="FuncSpace\Components\EditorTieStateBox.Designer.cs">
       <DependentUpon>EditorTieStateBox.cs</DependentUpon>
     </Compile>
-    <Compile Include="FuncSpaceBox.cs">
+    <Compile Include="FuncSpace\FuncSpaceBox.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="FuncSpaceBox.Designer.cs">
+    <Compile Include="FuncSpace\FuncSpaceBox.Designer.cs">
       <DependentUpon>FuncSpaceBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MainSpace\MainSpaceBox.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MainSpace\MainSpaceBox.Designer.cs">
+      <DependentUpon>MainSpaceBox.cs</DependentUpon>
     </Compile>
     <Compile Include="NovelEditorForm.cs">
       <SubType>Form</SubType>
@@ -75,20 +81,23 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TieNodesState.cs">
+    <Compile Include="FuncSpace\Components\TieNodesState.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="TieNodesState.Designer.cs">
+    <Compile Include="FuncSpace\Components\TieNodesState.Designer.cs">
       <DependentUpon>TieNodesState.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="DefaultStateBox.resx">
+    <EmbeddedResource Include="FuncSpace\Components\DefaultStateBox.resx">
       <DependentUpon>DefaultStateBox.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="EditorTieStateBox.resx">
+    <EmbeddedResource Include="FuncSpace\Components\EditorTieStateBox.resx">
       <DependentUpon>EditorTieStateBox.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FuncSpaceBox.resx">
+    <EmbeddedResource Include="FuncSpace\FuncSpaceBox.resx">
       <DependentUpon>FuncSpaceBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainSpace\MainSpaceBox.resx">
+      <DependentUpon>MainSpaceBox.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="NovelEditorForm.resx">
       <DependentUpon>NovelEditorForm.cs</DependentUpon>
@@ -102,7 +111,7 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="TieNodesState.resx">
+    <EmbeddedResource Include="FuncSpace\Components\TieNodesState.resx">
       <DependentUpon>TieNodesState.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">

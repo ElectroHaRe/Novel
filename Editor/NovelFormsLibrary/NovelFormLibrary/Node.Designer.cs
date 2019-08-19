@@ -42,6 +42,9 @@
             this.textBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.textBox.Size = new System.Drawing.Size(251, 80);
             this.textBox.TabIndex = 0;
+            this.textBox.MouseClick += new System.Windows.Forms.MouseEventHandler(this.textBox_MouseClick);
+            this.textBox.MouseDown += new System.Windows.Forms.MouseEventHandler(this.textBox_MouseDown);
+            this.textBox.MouseUp += new System.Windows.Forms.MouseEventHandler(this.textBox_MouseUp);
             // 
             // pictureBox
             // 
@@ -52,16 +55,21 @@
             this.pictureBox.TabIndex = 1;
             this.pictureBox.TabStop = false;
             this.pictureBox.BackgroundImageChanged += new System.EventHandler(this.pictureBox_BackgroundImageChanged);
-            this.pictureBox.Click += new System.EventHandler(this.pictureBox_Click);
+            this.pictureBox.MouseClick += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseClick);
+            this.pictureBox.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseDown);
+            this.pictureBox.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseUp);
             // 
             // NullImageLabel
             // 
-            this.NullImageLabel.AutoSize = true;
+            this.NullImageLabel.AutoEllipsis = true;
             this.NullImageLabel.Location = new System.Drawing.Point(75, 34);
             this.NullImageLabel.Name = "NullImageLabel";
             this.NullImageLabel.Size = new System.Drawing.Size(101, 13);
             this.NullImageLabel.TabIndex = 2;
             this.NullImageLabel.Text = "Image not uploaded";
+            this.NullImageLabel.MouseClick += new System.Windows.Forms.MouseEventHandler(this.NullImageLabel_MouseClick);
+            this.NullImageLabel.MouseDown += new System.Windows.Forms.MouseEventHandler(this.NullImageLabel_MouseDown);
+            this.NullImageLabel.MouseUp += new System.Windows.Forms.MouseEventHandler(this.NullImageLabel_MouseUp);
             // 
             // Node
             // 
@@ -72,7 +80,7 @@
             this.Controls.Add(this.pictureBox);
             this.Controls.Add(this.textBox);
             this.Name = "Node";
-            this.Size = new System.Drawing.Size(248, 159);
+            this.Size = new System.Drawing.Size(250, 160);
             this.SizeChanged += new System.EventHandler(this.Node_SizeChanged);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).EndInit();
             this.ResumeLayout(false);
