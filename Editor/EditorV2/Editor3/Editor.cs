@@ -94,6 +94,7 @@ namespace Editor3
                 {
                     elements[i] = new Element(temp[i].Text, temp[i].image, temp[i].Location);
                 }
+                worldBox.Clear();
                 for (int i = 0; i < temp.Length; i++)
                 {
                     worldBox.AddElement(elements[i]);

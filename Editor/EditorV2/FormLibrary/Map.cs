@@ -38,7 +38,7 @@ namespace FormLibrary
         private Point worldCenter => World.Center;
         private Point center => new Point(Width / 2, Height / 2);
 
-        private const int offset = 0;
+        private const int offset = 5;
         private Size validSize => new Size(Width - offset * 2, Height - offset * 2);
 
         #region TransformLogic

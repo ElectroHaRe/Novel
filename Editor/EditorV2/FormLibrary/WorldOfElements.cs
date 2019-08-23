@@ -17,6 +17,9 @@ namespace FormLibrary
             FocusChanged += RePaint;
         }
 
+
+        Pen pen = new Pen(Color.Black, 1);
+
         private const int TickInterval = 5;
 
         private struct SizeAndPos
@@ -34,6 +37,12 @@ namespace FormLibrary
         public int ElementHighlightWidth = 2;
         public Color ElementHighlightColor = Color.LightSeaGreen;
         public int ElementHighlightRectOffset = 5;
+
+        public int LineWidth = 1;
+        public Color LineColor = Color.Black;
+
+        public int ArrowWidth = 2;
+        public Color ArrowColor = Color.Black;
 
         private float _factor = 0.5f;
         /// <summary>
@@ -148,6 +157,15 @@ namespace FormLibrary
         {
             (this as IElementContainer).Current = null;
             FocusChanged?.Invoke(this, new EventArgs());
+        }
+
+        public void Clear()
+        {
+            foreach (var item in (this as IElementContainer).Elements)
+            {
+                Controls.Remove(item);
+            }
+            (this as IElementContainer).Elements.Clear();
         }
 
         public void SetFocusOn(Element element)
@@ -419,26 +437,27 @@ namespace FormLibrary
         private void WorldOfElements_Paint(object sender, PaintEventArgs e)
         {
             Size size = GetCurrentElementSize();
-            Pen pen = new Pen(Color.Black, 1);
+            Point item_pos, item_to_value_vector, value_pos_LeftUp, value_pos_LeftDown, value_pos_RightUp, value_pos_RightDown, p1_x, p1_y, p2_x, p2_y, value_pos_center, from_value_to_item, result;
+            bool p1_x_not_parallel, p1_y_not_parallel, p2_x_not_parallel, p2_y_not_parallel;
             foreach (var item in GetTiesPos())
             {
+                item_pos = new Point(item.Key.X + size.Width / 2, item.Key.Y + size.Height / 2);
                 for (int i = 0; i < item.Value.Count; i++)
                 {
-                    Point item_pos = new Point(item.Key.X + size.Width / 2, item.Key.Y + size.Height / 2);
-                    Point item_to_key_vector = new Point(item.Value[i].X + size.Width / 2 - item.Key.X - size.Width / 2,
-                        item.Value[i].Y + size.Height / 2 - item.Key.Y - size.Height / 2);
-                    Point key_pos_LeftUp = new Point(item.Value[i].X, item.Value[i].Y);
-                    Point key_pos_LeftDown = new Point(item.Value[i].X, item.Value[i].Y + size.Height);
-                    Point key_pos_RightUp = new Point(item.Value[i].X + size.Width, item.Value[i].Y);
-                    Point key_pos_RightDown = new Point(item.Value[i].X + size.Width, item.Value[i].Y + size.Height);
-                    Point p1_x; Point p1_y; bool p1_x_not_parallel = false; bool p1_y_not_parallel = false;
-                    p1_x_not_parallel = GetIntersectionPoint(item_pos, item_to_key_vector, key_pos_LeftUp, new Point(1, 0), out p1_x);
-                    p1_y_not_parallel = GetIntersectionPoint(item_pos, item_to_key_vector, key_pos_LeftUp, new Point(0, 1), out p1_y);
-                    Point p2_x; Point p2_y; bool p2_x_not_parallel = false; bool p2_y_not_parallel = false;
-                    p2_x_not_parallel = GetIntersectionPoint(item_pos, item_to_key_vector, key_pos_RightDown, new Point(-1, 0), out p2_x);
-                    p2_y_not_parallel = GetIntersectionPoint(item_pos, item_to_key_vector, key_pos_RightDown, new Point(0, -1), out p2_y);
-                    Point key_pos_center = new Point(key_pos_LeftUp.X + size.Width / 2, key_pos_LeftUp.Y + size.Height / 2);
-                    Point from_key_to_item = SubstractVector(item_pos, key_pos_center);
+                    item_to_value_vector = new Point(item.Value[i].X + size.Width / 2 - item.Key.X - size.Width / 2,
+                       item.Value[i].Y + size.Height / 2 - item.Key.Y - size.Height / 2);
+                    value_pos_LeftUp = new Point(item.Value[i].X, item.Value[i].Y);
+                    value_pos_LeftDown = new Point(item.Value[i].X, item.Value[i].Y + size.Height);
+                    value_pos_RightUp = new Point(item.Value[i].X + size.Width, item.Value[i].Y);
+                    value_pos_RightDown = new Point(item.Value[i].X + size.Width, item.Value[i].Y + size.Height);
+                    p1_x_not_parallel = false; p1_y_not_parallel = false;
+                    p1_x_not_parallel = GetIntersectionPoint(item_pos, item_to_value_vector, value_pos_LeftUp, new Point(1, 0), out p1_x);
+                    p1_y_not_parallel = GetIntersectionPoint(item_pos, item_to_value_vector, value_pos_LeftUp, new Point(0, 1), out p1_y);
+                    p2_x_not_parallel = false; p2_y_not_parallel = false;
+                    p2_x_not_parallel = GetIntersectionPoint(item_pos, item_to_value_vector, value_pos_RightDown, new Point(-1, 0), out p2_x);
+                    p2_y_not_parallel = GetIntersectionPoint(item_pos, item_to_value_vector, value_pos_RightDown, new Point(0, -1), out p2_y);
+                    value_pos_center = new Point(value_pos_LeftUp.X + size.Width / 2, value_pos_LeftUp.Y + size.Height / 2);
+                    from_value_to_item = SubstractVector(item_pos, value_pos_center);
                     Point[] points = new Point[0];
                     if (p1_x_not_parallel)
                     {
@@ -460,14 +479,13 @@ namespace FormLibrary
                         Array.Resize(ref points, points.Length + 1);
                         points[points.Length - 1] = p2_y;
                     }
-                    Point result;
                     for (int j = 0; j < points.Length; j++)
                     {
-                        points[j] = SubstractVector(points[j], key_pos_center);
+                        points[j] = SubstractVector(points[j], value_pos_center);
                     }
                     for (int j = 0; j < points.Length; j++)
                     {
-                        if (!(from_key_to_item.X * points[j].X >= 0 && from_key_to_item.Y * points[j].Y >= 0))
+                        if (!(from_value_to_item.X * points[j].X >= 0 && from_value_to_item.Y * points[j].Y >= 0))
                         {
                             for (int k = j; k < points.Length - 1; k++)
                             {
@@ -478,12 +496,14 @@ namespace FormLibrary
                         }
                     }
                     result = GetSmallestVector(points);
-                    result = AddVector(key_pos_center, result);
+                    result = AddVector(value_pos_center, result);
                     Point[] arrowPoints = GetArrowPoints(result, SubstractVector(result, item_pos), 30, 30);
+                    pen.Width = LineWidth;
+                    pen.Color = LineColor;
                     e.Graphics.DrawLine(pen, item_pos, result);
-                    pen.Width = 2;
+                    pen.Width = ArrowWidth;
+                    pen.Color = ArrowColor;
                     e.Graphics.DrawLines(pen, arrowPoints);
-                    pen.Width = 1;
                 }
             }
 
@@ -529,7 +549,7 @@ namespace FormLibrary
 
         private Point GetSmallestVector(params Point[] vectors)
         {
-            Point temp = vectors.Length > 0 ? vectors[0] : new Point();
+            Point temp = vectors.Length > 0 ? vectors[0] : new Point(0, 0);
             for (int i = 0; i < vectors.Length; i++)
             {
 
@@ -541,6 +561,8 @@ namespace FormLibrary
 
         private Point[] GetArrowPoints(Point peek, Point vector, int length, int width)
         {
+            if (vector.X == 0 && vector.Y == 0)
+                return new Point[] { peek, peek, peek };
             double normal_x = (double)vector.X / Math.Sqrt((double)vector.X * vector.X + (double)vector.Y * vector.Y);
             double normal_y = (double)vector.Y / Math.Sqrt((double)vector.X * vector.X + (double)vector.Y * vector.Y);
             double invert_x = -normal_y;

@@ -28,11 +28,15 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.funcBox = new FormLibrary.FunctionalBox();
-            this.worldBox = new FormLibrary.WorldOfElements();
             this.openDialog = new System.Windows.Forms.OpenFileDialog();
             this.saveDialog = new System.Windows.Forms.SaveFileDialog();
+            this.funcBox = new FormLibrary.FunctionalBox();
+            this.worldBox = new FormLibrary.WorldOfElements();
             this.SuspendLayout();
+            // 
+            // openDialog
+            // 
+            this.openDialog.FileName = "Novel Tree";
             // 
             // funcBox
             // 
@@ -49,10 +53,6 @@
             this.worldBox.ScaleFactor = 0.5F;
             this.worldBox.Size = new System.Drawing.Size(620, 450);
             this.worldBox.TabIndex = 1;
-            // 
-            // openDialog
-            // 
-            this.openDialog.FileName = "Novel Tree";
             // 
             // Editor
             // 
@@ -71,9 +71,9 @@
         #endregion
 
         private FormLibrary.FunctionalBox funcBox;
-        private FormLibrary.WorldOfElements worldBox;
         private System.Windows.Forms.OpenFileDialog openDialog;
         private System.Windows.Forms.SaveFileDialog saveDialog;
+        private FormLibrary.WorldOfElements worldBox;
     }
 }
 
