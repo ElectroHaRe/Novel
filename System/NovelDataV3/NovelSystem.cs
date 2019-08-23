@@ -179,7 +179,7 @@ namespace NovelDataV3
             if (!Directory.Exists(path))
                 throw new DirectoryNotFoundException("The directory does not exist");
 
-            path += fileName + ".noveltree";
+            path += @"\" + fileName + ".noveltree";
 
             Node[] temp_tree = new Node[Count];
 

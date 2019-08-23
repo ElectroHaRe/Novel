@@ -1,0 +1,13 @@
+B:\OtherProjects\Novel\Editor\EditorV2\FormLibrary\bin\Release\FormLibrary.dll
+B:\OtherProjects\Novel\Editor\EditorV2\FormLibrary\bin\Release\FormLibrary.pdb
+B:\OtherProjects\Novel\Editor\EditorV2\FormLibrary\obj\Release\FormLibrary.CompositeTextBox.resources
+B:\OtherProjects\Novel\Editor\EditorV2\FormLibrary\obj\Release\FormLibrary.Element.resources
+B:\OtherProjects\Novel\Editor\EditorV2\FormLibrary\obj\Release\FormLibrary.FunctionalBox.resources
+B:\OtherProjects\Novel\Editor\EditorV2\FormLibrary\obj\Release\FormLibrary.Map.resources
+B:\OtherProjects\Novel\Editor\EditorV2\FormLibrary\obj\Release\FormLibrary.Properties.Resources.resources
+B:\OtherProjects\Novel\Editor\EditorV2\FormLibrary\obj\Release\FormLibrary.SearchBox.resources
+B:\OtherProjects\Novel\Editor\EditorV2\FormLibrary\obj\Release\FormLibrary.WorldOfElements.resources
+B:\OtherProjects\Novel\Editor\EditorV2\FormLibrary\obj\Release\FormLibrary.csproj.GenerateResource.cache
+B:\OtherProjects\Novel\Editor\EditorV2\FormLibrary\obj\Release\FormLibrary.csproj.CoreCompileInputs.cache
+B:\OtherProjects\Novel\Editor\EditorV2\FormLibrary\obj\Release\FormLibrary.dll
+B:\OtherProjects\Novel\Editor\EditorV2\FormLibrary\obj\Release\FormLibrary.pdb

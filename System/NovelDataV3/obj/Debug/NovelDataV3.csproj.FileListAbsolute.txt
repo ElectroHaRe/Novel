@@ -3,3 +3,9 @@ B:\OtherProjects\NovelEditor\ConcreteProjects\NovelData\NovelDataV3\bin\Debug\No
 B:\OtherProjects\NovelEditor\ConcreteProjects\NovelData\NovelDataV3\obj\Debug\NovelDataV3.csproj.CoreCompileInputs.cache
 B:\OtherProjects\NovelEditor\ConcreteProjects\NovelData\NovelDataV3\obj\Debug\NovelDataV3.dll
 B:\OtherProjects\NovelEditor\ConcreteProjects\NovelData\NovelDataV3\obj\Debug\NovelDataV3.pdb
+B:\OtherProjects\Novel\System\NovelDataV3\bin\Debug\NovelDataV3.dll
+B:\OtherProjects\Novel\System\NovelDataV3\bin\Debug\NovelDataV3.pdb
+B:\OtherProjects\Novel\System\NovelDataV3\obj\Debug\NovelDataV3.csprojAssemblyReference.cache
+B:\OtherProjects\Novel\System\NovelDataV3\obj\Debug\NovelDataV3.csproj.CoreCompileInputs.cache
+B:\OtherProjects\Novel\System\NovelDataV3\obj\Debug\NovelDataV3.dll
+B:\OtherProjects\Novel\System\NovelDataV3\obj\Debug\NovelDataV3.pdb

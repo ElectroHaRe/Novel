@@ -1,0 +1,13 @@
+B:\OtherProjects\Novel\Editor\EditorV2\Game\bin\Release\Game.exe.config
+B:\OtherProjects\Novel\Editor\EditorV2\Game\bin\Release\Game.exe
+B:\OtherProjects\Novel\Editor\EditorV2\Game\bin\Release\Game.pdb
+B:\OtherProjects\Novel\Editor\EditorV2\Game\bin\Release\NovelDataV3.dll
+B:\OtherProjects\Novel\Editor\EditorV2\Game\bin\Release\NovelDataV3.pdb
+B:\OtherProjects\Novel\Editor\EditorV2\Game\obj\Release\Game.csprojAssemblyReference.cache
+B:\OtherProjects\Novel\Editor\EditorV2\Game\obj\Release\Game.GameWindow.resources
+B:\OtherProjects\Novel\Editor\EditorV2\Game\obj\Release\Game.Properties.Resources.resources
+B:\OtherProjects\Novel\Editor\EditorV2\Game\obj\Release\Game.csproj.GenerateResource.cache
+B:\OtherProjects\Novel\Editor\EditorV2\Game\obj\Release\Game.csproj.CoreCompileInputs.cache
+B:\OtherProjects\Novel\Editor\EditorV2\Game\obj\Release\Game.csproj.CopyComplete
+B:\OtherProjects\Novel\Editor\EditorV2\Game\obj\Release\Game.exe
+B:\OtherProjects\Novel\Editor\EditorV2\Game\obj\Release\Game.pdb

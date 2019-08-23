@@ -1,0 +1,15 @@
+B:\OtherProjects\Novel\Editor\EditorV2\EditorV2\bin\Debug\EditorV2.exe.config
+B:\OtherProjects\Novel\Editor\EditorV2\EditorV2\bin\Debug\EditorV2.exe
+B:\OtherProjects\Novel\Editor\EditorV2\EditorV2\bin\Debug\EditorV2.pdb
+B:\OtherProjects\Novel\Editor\EditorV2\EditorV2\obj\Debug\EditorV2.csprojAssemblyReference.cache
+B:\OtherProjects\Novel\Editor\EditorV2\EditorV2\obj\Debug\EditorV2.Properties.Resources.resources
+B:\OtherProjects\Novel\Editor\EditorV2\EditorV2\obj\Debug\EditorV2.csproj.GenerateResource.cache
+B:\OtherProjects\Novel\Editor\EditorV2\EditorV2\obj\Debug\EditorV2.csproj.CoreCompileInputs.cache
+B:\OtherProjects\Novel\Editor\EditorV2\EditorV2\obj\Debug\EditorV2.exe
+B:\OtherProjects\Novel\Editor\EditorV2\EditorV2\obj\Debug\EditorV2.pdb
+B:\OtherProjects\Novel\Editor\EditorV2\EditorV2\bin\Debug\FormLibrary.dll
+B:\OtherProjects\Novel\Editor\EditorV2\EditorV2\bin\Debug\NovelDataV3.dll
+B:\OtherProjects\Novel\Editor\EditorV2\EditorV2\bin\Debug\FormLibrary.pdb
+B:\OtherProjects\Novel\Editor\EditorV2\EditorV2\bin\Debug\NovelDataV3.pdb
+B:\OtherProjects\Novel\Editor\EditorV2\EditorV2\obj\Debug\EditorV2.csproj.CopyComplete
+B:\OtherProjects\Novel\Editor\EditorV2\EditorV2\obj\Debug\EditorV2.ElementParams.resources
