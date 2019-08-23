@@ -32,7 +32,6 @@
             this.exitButton = new System.Windows.Forms.Button();
             this.loadButton = new System.Windows.Forms.Button();
             this.pictureBox = new System.Windows.Forms.PictureBox();
-            this.vScrollBar = new System.Windows.Forms.VScrollBar();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
             this.SuspendLayout();
             // 
@@ -43,24 +42,24 @@
             // exitButton
             // 
             this.exitButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.exitButton.Location = new System.Drawing.Point(325, 250);
+            this.exitButton.Location = new System.Drawing.Point(325, 255);
             this.exitButton.Name = "exitButton";
             this.exitButton.Size = new System.Drawing.Size(150, 30);
             this.exitButton.TabIndex = 1;
             this.exitButton.Text = "Exit";
             this.exitButton.UseVisualStyleBackColor = true;
-            this.exitButton.Click += new System.EventHandler(this.exitButton_Click);
+            this.exitButton.Click += new System.EventHandler(this.ExitButtonClick);
             // 
             // loadButton
             // 
             this.loadButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.loadButton.Location = new System.Drawing.Point(325, 200);
+            this.loadButton.Location = new System.Drawing.Point(325, 185);
             this.loadButton.Name = "loadButton";
             this.loadButton.Size = new System.Drawing.Size(150, 30);
             this.loadButton.TabIndex = 2;
             this.loadButton.Text = "Load Novel ;";
             this.loadButton.UseVisualStyleBackColor = true;
-            this.loadButton.Click += new System.EventHandler(this.loadButton_Click);
+            this.loadButton.Click += new System.EventHandler(this.LoadClickHandler);
             // 
             // pictureBox
             // 
@@ -73,15 +72,7 @@
             this.pictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox.TabIndex = 0;
             this.pictureBox.TabStop = false;
-            this.pictureBox.SizeChanged += new System.EventHandler(this.pictureBox_SizeChanged);
-            // 
-            // vScrollBar
-            // 
-            this.vScrollBar.Location = new System.Drawing.Point(783, 0);
-            this.vScrollBar.Name = "vScrollBar";
-            this.vScrollBar.Size = new System.Drawing.Size(17, 450);
-            this.vScrollBar.TabIndex = 3;
-            this.vScrollBar.ValueChanged += new System.EventHandler(this.vScrollBar_ValueChanged);
+            this.pictureBox.SizeChanged += new System.EventHandler(this.SizeChangedHandler);
             // 
             // GameWindow
             // 
@@ -90,7 +81,6 @@
             this.AutoScroll = true;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.vScrollBar);
             this.Controls.Add(this.loadButton);
             this.Controls.Add(this.exitButton);
             this.Controls.Add(this.pictureBox);
@@ -107,7 +97,6 @@
         private System.Windows.Forms.OpenFileDialog openDialog;
         private System.Windows.Forms.Button exitButton;
         private System.Windows.Forms.Button loadButton;
-        private System.Windows.Forms.VScrollBar vScrollBar;
     }
 }
 

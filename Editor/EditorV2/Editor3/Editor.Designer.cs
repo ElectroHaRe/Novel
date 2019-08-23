@@ -62,7 +62,7 @@
             this.Controls.Add(this.worldBox);
             this.Controls.Add(this.funcBox);
             this.Name = "Editor";
-            this.Text = "Form1";
+            this.Text = "Editor";
             this.SizeChanged += new System.EventHandler(this.SizeChangedHandler);
             this.ResumeLayout(false);
 

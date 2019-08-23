@@ -11,129 +11,103 @@ namespace Game
         public GameWindow()
         {
             InitializeComponent();
-            treeUser = Factory.GetUser();
-            vScrollBar.Visible = vScrollBar.Enabled = false;
-            pictureBox.Paint += OnPaintLabel;
+            this.DoubleBuffered = true;
+            SizeChangedHandler(null, null);
+            ChoicesTextField.LabelMouseClick += LabelMouseClickHandler;
+            ChoicesTextField.LabelMouseEnter += LabelMouseEnterHandler;
+            ChoicesTextField.LabelMouseLeave += LabelMouseLeaveHandler;
+            MainTextField.Active = false;
+            ChoicesTextField.Active = false;
+            pictureBox.Controls.Add(MainTextField);
+            pictureBox.Controls.Add(ChoicesTextField);
+            openDialog.Filter = "(*.NovelTree)|*.noveltree";
         }
 
-        private enum State { mainMenu, Game }
-        State state = State.mainMenu;
+        public int VOffset = 10;
 
-        private int VOffset => (int)(Height * (float)10 / 450);
-        private const int FontSize = 14;
-        private const int WindowHOffset = 16;
-        private const int WindowVOffset = 39;
+        private User treeUser = Factory.GetUser();
 
-        private const int MaxWidth = 400;
+        private string EmptyCap = ">>>";
 
-        private Font LabelFont => new System.Drawing.Font((new Label()).Font.FontFamily, FontSize);
+        private enum State { mainMenu, inGame }
+        private State state = State.mainMenu;
 
-        private List<Label> Labels = new List<Label>();
-        private Label MainText = new Label();
-
-        private User treeUser;
+        TextField MainTextField = new TextField();
+        TextField ChoicesTextField = new TextField();
 
         private void ShowNode()
         {
-            foreach (var item in Labels)
-            {
-                pictureBox.Controls.Remove(item);
-            }
-            Labels.Clear();
-
+            MainTextField.Clear();
+            ChoicesTextField.Clear();
+            MainTextField.AddLabel(treeUser.Text);
             foreach (var item in treeUser.Choices)
             {
-                Labels.Add(new Label());
-                Labels[Labels.Count - 1].Text = item == string.Empty ? ">>>" : item;
-                Labels[Labels.Count - 1].AutoSize = true;
-                Labels[Labels.Count - 1].MouseEnter += ChoiseMouseEnterHandler;
-                Labels[Labels.Count - 1].Click += ChoiseLabelClickHandler;
-                Labels[Labels.Count - 1].BackColor = Color.Transparent;
-                Labels[Labels.Count - 1].ForeColor = Color.White;
-                Labels[Labels.Count - 1].Font = LabelFont;
-                Labels[Labels.Count - 1].Size = Labels[Labels.Count - 1].GetPreferredSize(new Size(MaxWidth, Height));
-                Labels[Labels.Count - 1].AutoSize = false;
-                Labels[Labels.Count - 1].Height /= 2;
-                Labels[Labels.Count - 1].CreateControl();
+                if (item == string.Empty)
+                    ChoicesTextField.AddInteractLabel(EmptyCap);
+                else
+                    ChoicesTextField.AddInteractLabel(item);
             }
-            if (MainText.Font.Size != FontSize)
-                MainText.Font = LabelFont;
-            MainText.Text = treeUser.Text;
-            MainText.BackColor = Color.Transparent;
-            MainText.Size = MainText.GetPreferredSize(new Size(Width / 2, Height));
-            MainText.Top = Height / 2 - MainText.Height - VOffset * 2;
-            pictureBox.Controls.Add(MainText);
-            MainText.Left = (Width - WindowHOffset) / 2 - MainText.Width / 2;
+            if (state != State.inGame)
+            {
+                state = State.inGame;
+                MainTextField.Active = ChoicesTextField.Active = true;
+                loadButton.Enabled = loadButton.Visible = exitButton.Enabled = exitButton.Visible = false;
+            }
             pictureBox.Image = treeUser.Image;
-            for (int i = 0; i < Labels.Count; i++)
-            {
-                pictureBox.Controls.Add(Labels[i]);
-                Labels[i].Left = (Width - WindowHOffset) / 2 - Labels[i].Width / 2;
-                Labels[i].Top = i == 0 ? MainText.Top + MainText.Height + VOffset : Labels[i - 1].Top + Labels[i - 1].Height + VOffset;
-            }
+            MainTextField.Update();
+            ChoicesTextField.Update();
         }
 
-        private void OnPaintLabel(object sender, PaintEventArgs e)
+        private void LoadClickHandler(object sender, EventArgs e)
         {
-            Brush brush = new SolidBrush(Color.FromArgb(150, Color.Black));
-            e.Graphics.FillRectangle(brush, Width/2 - MaxWidth/2, Height/3, MaxWidth, Height/2);
-        }
-
-        private void ChoiseMouseEnterHandler(object sender, EventArgs e)
-        {
-            for (int i = 0; i < Labels.Count; i++)
-            {
-                Labels[i].BorderStyle = BorderStyle.None;
-            }
-            (sender as Label).BorderStyle = BorderStyle.FixedSingle;
-        }
-
-        private void ChoiseLabelClickHandler(object sender, EventArgs e)
-        {
-            treeUser.MoveNext((sender as Label).Text);
-            ShowNode();
-        }
-
-        private void pictureBox_SizeChanged(object sender, EventArgs e)
-        {
-            for (int i = Labels.Count - 1; i >= 0; i--)
-            {
-                Labels[i].Top = i == Labels.Count - 1 ? Height - WindowVOffset - VOffset - Labels[i].Height : Labels[i + 1].Top - VOffset - Labels[i].Height;
-                Labels[i].Left = (Width - WindowHOffset) / 2 - Labels[i].Width / 2;
-            }
-            MainText.Left = (Width - WindowHOffset) / 2 - MainText.Width / 2;
-            MainText.Top = Labels.Count > 0 ? Labels[0].Top - VOffset * 2 - MainText.Height : VOffset * 2 - MainText.Height;
-            loadButton.Left = Width / 2 - loadButton.Width / 2;
-            loadButton.Top = pictureBox.Height / 2 - loadButton.Height / 2 - 10;
-            exitButton.Top = loadButton.Top + loadButton.Height + 50;
-            exitButton.Left = loadButton.Left;
-        }
-
-        private void loadButton_Click(object sender, EventArgs e)
-        {
-            openDialog.Filter = "(*.NovelTree)|*.NovelTree";
             if (openDialog.ShowDialog() == DialogResult.OK)
             {
                 try
                 {
                     treeUser.Load(openDialog.FileName);
-                    loadButton.Visible = loadButton.Enabled = false;
-                    exitButton.Visible = exitButton.Enabled = false;
-                    state = State.Game;
+                    ShowNode();
                 }
                 catch { return; }
-                ShowNode();
             }
         }
 
-        private void exitButton_Click(object sender, EventArgs e)
+        private void ExitButtonClick(object sender, EventArgs e)
         {
             Application.Exit();
         }
 
-        private void vScrollBar_ValueChanged(object sender, EventArgs e)
+        private void LabelMouseClickHandler(object sender, MouseEventArgs e)
         {
-            MainText.Top = vScrollBar.Value;
+            string text = (sender as Label).Text;
+            treeUser.MoveNext(text == EmptyCap ? string.Empty : text);
+            ShowNode();
+        }
+
+        private void LabelMouseEnterHandler(object sender, EventArgs e)
+        {
+            (sender as Label).BorderStyle = BorderStyle.FixedSingle;
+        }
+
+        private void LabelMouseLeaveHandler(object sender, EventArgs e)
+        {
+            (sender as Label).BorderStyle = BorderStyle.None;
+        }
+
+        private void SizeChangedHandler(object sender, EventArgs e)
+        {
+            MainTextField.Height = Height / 5;
+            MainTextField.Width = Width / 2;
+            MainTextField.Left = pictureBox.Width / 2 - MainTextField.Width / 2;
+            MainTextField.Top = pictureBox.Height / 2 - MainTextField.Height - VOffset;
+            ChoicesTextField.Height = Height / 3;
+            ChoicesTextField.Width = Width / 2;
+            ChoicesTextField.Left = pictureBox.Width / 2 - ChoicesTextField.Width / 2;
+            ChoicesTextField.Top = pictureBox.Height / 2 + VOffset * 2;
+
+            loadButton.Left = pictureBox.Width / 2 - loadButton.Width / 2;
+            loadButton.Top = pictureBox.Height / 2 - loadButton.Height - VOffset;
+            exitButton.Left = pictureBox.Width / 2 - exitButton.Width / 2;
+            exitButton.Top = pictureBox.Height / 2 + exitButton.Height;
         }
     }
 }

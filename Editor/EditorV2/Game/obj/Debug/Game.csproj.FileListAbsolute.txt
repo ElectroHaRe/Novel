@@ -11,3 +11,4 @@ B:\OtherProjects\Novel\Editor\EditorV2\Game\obj\Debug\Game.csproj.CoreCompileInp
 B:\OtherProjects\Novel\Editor\EditorV2\Game\obj\Debug\Game.csproj.CopyComplete
 B:\OtherProjects\Novel\Editor\EditorV2\Game\obj\Debug\Game.exe
 B:\OtherProjects\Novel\Editor\EditorV2\Game\obj\Debug\Game.pdb
+B:\OtherProjects\Novel\Editor\EditorV2\Game\obj\Debug\Game.TextField.resources
