@@ -54,6 +54,7 @@ namespace Game
                 loadButton.Enabled = loadButton.Visible = exitButton.Enabled = exitButton.Visible = false;
             }
             pictureBox.Image = treeUser.Image;
+            SizeChangedHandler(null, null);
             MainTextField.Update();
             ChoicesTextField.Update();
         }
@@ -95,14 +96,27 @@ namespace Game
 
         private void SizeChangedHandler(object sender, EventArgs e)
         {
-            MainTextField.Height = Height / 5;
-            MainTextField.Width = Width / 2;
-            MainTextField.Left = pictureBox.Width / 2 - MainTextField.Width / 2;
-            MainTextField.Top = pictureBox.Height / 2 - MainTextField.Height - VOffset;
+            MainTextField.Size = new Size(Width / 2, Height / 4);
             ChoicesTextField.Height = Height / 3;
             ChoicesTextField.Width = Width / 2;
+
+            int w = MainTextField.GetOptimalWidth(); int h = MainTextField.GetOptimalHeight();
+            if (w < MainTextField.Width)
+                MainTextField.Width = w;
+            if (h < MainTextField.Height)
+                MainTextField.Height = h;
+
+            MainTextField.Left = pictureBox.Width / 2 - MainTextField.Width / 2;
+            MainTextField.Top = pictureBox.Height / 2 - MainTextField.Height - VOffset * 2;
+
+            w = ChoicesTextField.GetOptimalWidth(); h = ChoicesTextField.GetOptimalHeight();
+            if (w < ChoicesTextField.Width)
+                ChoicesTextField.Width = w;
+            if (h < ChoicesTextField.Height)
+                ChoicesTextField.Height = h;
+
             ChoicesTextField.Left = pictureBox.Width / 2 - ChoicesTextField.Width / 2;
-            ChoicesTextField.Top = pictureBox.Height / 2 + VOffset * 2;
+            ChoicesTextField.Top = (pictureBox.Height * 3) / 4 + VOffset * 2;
 
             loadButton.Left = pictureBox.Width / 2 - loadButton.Width / 2;
             loadButton.Top = pictureBox.Height / 2 - loadButton.Height - VOffset;

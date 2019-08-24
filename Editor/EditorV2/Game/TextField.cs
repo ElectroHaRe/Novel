@@ -33,6 +33,10 @@ namespace Game
 
         private List<Label> Labels = new List<Label>();
 
+        private Pen linePen = new Pen(Color.White, 1);
+
+        public int Count => Labels.Count;
+
         public void Clear()
         {
             foreach (var item in Labels)
@@ -40,6 +44,29 @@ namespace Game
                 Controls.Remove(item);
             }
             Labels.Clear();
+        }
+
+        public int GetOptimalWidth()
+        {
+            int w = 0;
+            foreach (var item in Labels)
+            {
+                if (item.Width > w)
+                    w = item.Width;
+            }
+            return w + HOffset * 4;
+        }
+
+        public int GetOptimalHeight()
+        {
+            int h = 0;
+            foreach (var item in Labels)
+            {
+                h += item.Height + VOffset;
+            }
+            if (Labels.Count > 0)
+                h += VOffset;
+            return h;
         }
 
         public void AddInteractLabels(params string[] textArray)
@@ -78,9 +105,10 @@ namespace Game
             Labels.Add(new Label());
             Labels[Labels.Count - 1].Text = text;
             Labels[Labels.Count - 1].Size = Labels[Labels.Count - 1].GetPreferredSize(new Size(Width - HOffset * 2, Height / 2));
+            Labels[Labels.Count - 1].AutoSize = false;
             Labels[Labels.Count - 1].Width += SizeOffset.Width;
             Labels[Labels.Count - 1].Height += SizeOffset.Height;
-            Labels[Labels.Count - 1].Left = Width / 2 - HOffset * 2 - Labels[Labels.Count - 1].Width/2;
+            Labels[Labels.Count - 1].Left = Width / 2 - HOffset * 2 - Labels[Labels.Count - 1].Width / 2;
             Labels[Labels.Count - 1].Top = Labels.Count > 1 ? Labels[Labels.Count - 2].Top + Labels[Labels.Count - 2].Height + VOffset : VOffset;
             Labels[Labels.Count - 1].ForeColor = Color.White;
             Labels[Labels.Count - 1].Font = font;
@@ -100,7 +128,7 @@ namespace Game
                 Labels[i].Size = Labels[i].GetPreferredSize(new Size(Width - HOffset * 4, Height));
                 Labels[i].Width += SizeOffset.Width;
                 Labels[i].Height += SizeOffset.Height;
-                Labels[i].Left = Width / 2 - HOffset * 2 - Labels[i].Width / 2; ;
+                Labels[i].Left = Width / 2 - Labels[i].Width / 2; ;
                 Labels[i].Top = i == 0 ? VOffset : Labels[i - 1].Top + Labels[i - 1].Height + VOffset;
             }
         }
@@ -110,6 +138,15 @@ namespace Game
             using (Brush brush = new SolidBrush(Color.FromArgb(Transparent, BackGroundColor)))
             {
                 e.Graphics.FillRectangle(brush, 0, 0, Width, Height);
+            }
+
+            if (Count > 1)
+            {
+                for (int i = 0; i < Labels.Count; i++)
+                {
+                    if (i < Count - 1)
+                        e.Graphics.DrawLine(linePen, HOffset, Labels[i].Top + Labels[i].Height + VOffset / 2, Width - HOffset, Labels[i].Top + Labels[i].Height + VOffset / 2);
+                }
             }
         }
     }
