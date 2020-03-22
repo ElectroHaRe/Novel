@@ -4,6 +4,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 16.0.29728.190
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EditorV2", "EditorV2\EditorV2.csproj", "{49F01EEE-8D7C-4ADE-BB29-99704E326D99}"
+	ProjectSection(ProjectDependencies) = postProject
+		{FC7D29A2-8CC4-45F8-A57D-A8101AFB0061} = {FC7D29A2-8CC4-45F8-A57D-A8101AFB0061}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FormLibrary", "FormLibrary\FormLibrary.csproj", "{FC7D29A2-8CC4-45F8-A57D-A8101AFB0061}"
 EndProject
